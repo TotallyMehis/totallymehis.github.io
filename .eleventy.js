@@ -19,6 +19,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'misc/CNAME': 'CNAME' })
   eleventyConfig.addPassthroughCopy({ 'misc/.nojekyll': '.nojekyll' })
   eleventyConfig.addPassthroughCopy({ 'misc/robots.txt': 'robots.txt' })
+  eleventyConfig.addPassthroughCopy({ 'map_images/': 'maps/' })
 
   eleventyConfig.addPlugin(syntaxHighlight)
 
@@ -39,7 +40,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.on('afterBuild', async () => {
     await esbuild.build({
-      entryPoints: ['css/main.scss', 'css/blog.scss', 'css/front.scss'],
+      entryPoints: ['css/main.scss', 'css/blog.scss', 'css/front.scss', 'css/maps.scss'],
       outdir: '_site/assets',
       minify: !isDevelopment,
       sourcemap: isDevelopment,
